@@ -1,8 +1,6 @@
 #ifndef EntryPoint_h
 #define EntryPoint_h
 
-#include <stdio.h>
-
 namespace Texel
 {
     extern Application *CreateApplication();
@@ -10,8 +8,10 @@ namespace Texel
 
 int main(int argc, char **argv)
 {
+    Texel::Log::Init();
+    TEXEL_CORE_TRACE("Init");
+
     Texel::Application *app = Texel::CreateApplication();
-    printf("Hello Texel Engine\n");
     app->Run();
     delete app;
     return 0;

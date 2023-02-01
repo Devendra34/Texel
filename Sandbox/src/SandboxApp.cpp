@@ -5,6 +5,7 @@ class Sandbox : public Texel::Application
 public:
     Sandbox()
     {
+        TEXEL_INFO("Creating Sandbox");
     }
     ~Sandbox()
     {

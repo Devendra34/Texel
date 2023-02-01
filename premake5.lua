@@ -26,6 +26,11 @@ project "Texel"
         "%{prj.name}/src/**.cpp",
     }
 
+    includedirs
+    {
+        "%{prj.name}/third-party/spdlog/include"
+    }
+
     filter "system:windows"
         staticruntime "On"
         systemversion "latest"
@@ -77,6 +82,7 @@ project "Sandbox"
     
         includedirs
         {
+            "Texel/third-party/spdlog/include",
             "Texel/src"
         }
     

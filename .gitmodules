@@ -1,0 +1,3 @@
+[submodule "Texel/third-party/spdlog"]
+	path = Texel/third-party/spdlog
+	url = https://github.com/gabime/spdlog.git
