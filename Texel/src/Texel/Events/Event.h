@@ -1,9 +1,7 @@
 #ifndef Event_h
 #define Event_h
 
-#include <string>
-#include <functional>
-
+#include "texel_pch.h"
 #include "Texel/Core.h"
 
 namespace Texel

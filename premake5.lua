@@ -19,6 +19,8 @@ project "Texel"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "texel_pch.h"
+    pchsource "texel_pch.cpp"
 
     files
     {
