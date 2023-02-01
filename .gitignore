@@ -1,0 +1,24 @@
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+*.log
+
+# IntelliJ
+*.iml
+/.idea
+
+# XCode
+**.xcodeproj
+**.xcworkspace
+
+# Directories
+.DS_Store
+bin/
+bin-int/
+
+# Files
+*.user
+*Makefile
