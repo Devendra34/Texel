@@ -12,4 +12,6 @@
     #define TEXEL_API
 #endif
 
+#define BIT(x) (1 << x)
+
 #endif // Core_h
