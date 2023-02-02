@@ -1,6 +1,6 @@
+#include "texel_pch.h"
 #include "Application.h"
 
-#include "texel_pch.h"
 #include "Texel/Events/ApplicationEvent.h"
 #include "Texel/Log.h"
 

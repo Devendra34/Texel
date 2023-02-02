@@ -20,8 +20,8 @@ project "Texel"
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
     pchheader "texel_pch.h"
-    pchsource "texel_pch.cpp"
-
+    pchsource "%{prj.name}/src/texel_pch.cpp"
+    
     files
     {
         "%{prj.name}/src/**.h",
@@ -40,8 +40,8 @@ project "Texel"
 
         defines
         {
-            "TEXEL_PLATFROM_WINDOWS",
-            "TEXEL_BUILD_DIR_DLL"
+            "TEXEL_PLATFORM_WINDOWS",
+            "TEXEL_BUILD_DLL"
         }
 
         postbuildcommands
@@ -100,7 +100,7 @@ project "Sandbox"
     
             defines
             {
-                "TEXEL_PLATFROM_WINDOWS"
+                "TEXEL_PLATFORM_WINDOWS"
             }
     
         filter "configurations:Debug"
