@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.16)
+set(PROJECT "Sandbox")
+project(${PROJECT} VERSION 0.1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+set(OUTPUT_DIR "${CMAKE_BUILD_TYPE}-${CMAKE_SYSTEM_NAME}/${PROJECT}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/"${OUTPUT_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/"${OUTPUT_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/"${OUTPUT_DIR}")
+
+set(SANDBOX_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/Sandbox/src")
+
+include_directories(SANDBOX_SRCS)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Texel/src)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Texel)
+
+add_executable(${PROJECT} ${SANDBOX_SRCS}/SandboxApp.cpp)
+
+target_link_libraries(${PROJECT} Texel)
