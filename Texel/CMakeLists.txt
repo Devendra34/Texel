@@ -24,21 +24,11 @@ set(CMAKE_POSITION_INDEPENDENT_CODE 1)
 add_subdirectory(${THIRD_PARTY_SRCS}/spdlog)
 add_subdirectory(${THIRD_PARTY_SRCS}/glfw)
 
-if (APPLE)
-    list(APPEND OPENGL_LIBS
-            "-framework OpenGL")
-elseif (WIN32)
-    list(APPEND OPENGL_LIBS
-            "-lglu32 - lopengl32")
-    set(CMAKE_EXE_LINDER_FLAGS "-std-gnu99 -static -static-libgcc -static-libstdc++ -mwindows")
-else ()
-    list(APPEND OPENGL_LIBS
-            "-lGL -lGLU -lX11")
-endif ()
+find_package(OpenGL REQUIRED)
 
 add_library(${PROJECT} SHARED ${FILE_SOURCES})
 
-target_link_libraries(${PROJECT} spdlog glfw ${OPENGL_LIBS})
+target_link_libraries(${PROJECT} spdlog glfw ${OPENGL_LIBRARY})
 
 if (WIN32)
     target_compile_definitions(${PROJECT} PRIVATE TEXEL_PLATFORM_WINDOWS TEXEL_BUILD_DLL)
