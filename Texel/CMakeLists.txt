@@ -26,6 +26,8 @@ add_library(${PROJECT} SHARED ${FILE_SOURCES})
 
 target_link_libraries(${PROJECT} spdlog)
 
-target_compile_definitions(${PROJECT} PRIVATE TEXEL_PLATFORM_WINDOWS TEXEL_BUILD_DLL)
+if (WIN32)
+    target_compile_definitions(${PROJECT} PRIVATE TEXEL_PLATFORM_WINDOWS TEXEL_BUILD_DLL)
+endif()
 
 # target_precompile_headers(${PROJECT} PRIVATE src/texel_pch.h)
