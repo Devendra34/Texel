@@ -26,6 +26,8 @@ namespace Texel
         virtual void Init(const WindowProps &props);
         virtual void Shutdown();
 
+        void RegisterEvents();
+
     private:
         GLFWwindow *m_Window;
 
