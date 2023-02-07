@@ -1,3 +1,6 @@
 [submodule "Texel/third-party/spdlog"]
 	path = Texel/third-party/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Texel/third-party/glfw"]
+	path = Texel/third-party/glfw
+	url = https://github.com/glfw/glfw.git

@@ -1,6 +1,8 @@
 #ifndef Texel_Pch_h // precompilied headers
 #define Texel_Pch_h
 
+#include "Texel/Log.h"
+
 #include <iostream>
 #include <memory>
 #include <utility>

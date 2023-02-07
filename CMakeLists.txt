@@ -27,6 +27,12 @@ if (WIN32)
 endif()
 
 
+if(${CMAKE_BUILD_TYPE} MATCHES Debug)
+    target_compile_definitions(${PROJECT} PUBLIC TEXEL_DEBUG TEXEL_ENABLE_ASSERTS)
+elseif(${CMAKE_BUILD_TYPE} MATCHES Release)
+    target_compile_definitions(${PROJECT} PUBLIC TEXEL_RELEASE)
+endif()
+
 if (WIN32)
     add_custom_command(TARGET ${PROJECT} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
