@@ -34,4 +34,11 @@ if (WIN32)
     target_compile_definitions(${PROJECT} PRIVATE TEXEL_PLATFORM_WINDOWS TEXEL_BUILD_DLL)
 endif()
 
+
+if(${CMAKE_BUILD_TYPE} MATCHES Debug)
+    target_compile_definitions(${PROJECT} PUBLIC TEXEL_DEBUG TEXEL_ENABLE_ASSERTS)
+elseif(${CMAKE_BUILD_TYPE} MATCHES Release)
+    target_compile_definitions(${PROJECT} PUBLIC TEXEL_RELEASE)
+endif()
+
 # target_precompile_headers(${PROJECT} PRIVATE src/texel_pch.h)

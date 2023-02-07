@@ -35,4 +35,12 @@ namespace Texel
 #define TEXEL_ERROR(...)        ::Texel::Log::GetClientLogger()->error(__VA_ARGS__)
 #define TEXEL_FATAL(...)        ::Texel::Log::GetClientLogger()->fatal(__VA_ARGS__)
 
+#ifdef TEXEL_ENABLE_ASSERTS
+	#define TEXEL_ASSERT(x, ...) { if(!(x)) { TEXEL_ERROR("Assertion Failed: {0}", __VA_ARGS__); } }
+	#define TEXEL_CORE_ASSERT(x, ...) { if(!(x)) { TEXEL_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); } }
+#else
+	#define TEXEL_ASSERT(x, ...)
+	#define TEXEL_CORE_ASSERT(x, ...)
+#endif
+
 #endif
