@@ -18,10 +18,14 @@ file(GLOB_RECURSE FILE_SOURCES "${TEXEL_SRCS}/*.h" "${TEXEL_SRCS}/*.cpp")
 include_directories(${TEXEL_SRCS})
 include_directories(${THIRD_PARTY_SRCS}/spdlog/include)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE 1)
+
 add_subdirectory(${THIRD_PARTY_SRCS}/spdlog)
 
 add_library(${PROJECT} SHARED ${FILE_SOURCES})
 
 target_link_libraries(${PROJECT} spdlog)
+
+target_compile_definitions(${PROJECT} PRIVATE TEXEL_PLATFORM_WINDOWS TEXEL_BUILD_DLL)
 
 # target_precompile_headers(${PROJECT} PRIVATE src/texel_pch.h)
