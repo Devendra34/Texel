@@ -16,22 +16,40 @@ namespace Texel
         m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
     }
 
-    void Application::OnEvent(Event &e)
+    Application::~Application() {}
+
+    void Application::PushLayer(Layer *layer)
     {
-        TEXEL_CORE_INFO("{0}", e);
-        EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+        m_LayerStack.PushLayer(layer);
     }
 
-    Application::~Application() {}
+    void Application::PushOverlay(Layer *layer)
+    {
+        m_LayerStack.PushOverlay(layer);
+    } 
+
+    void Application::OnEvent(Event &e)
+    {
+        EventDispatcher dispatcher(e);
+        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+
+        for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+        {
+            (*--it)->OnEvent(e);
+            if (e.IsHandled())
+                break;
+        }
+    }
 
     void Application::Run()
     {
-         while (m_Running)
-         {
+        while (m_Running)
+        {
+            for (auto layer : m_LayerStack) {
+                layer->OnUpdate();
+            }
             m_Window->OnUpdate();
-         }
-         
+        }
     }
 
     bool Application::OnWindowClose(WindowCloseEvent &event)
