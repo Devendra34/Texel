@@ -46,13 +46,6 @@ namespace Texel
         Window& window = app.GetWindow();
         io.DisplaySize = ImVec2(window.GetWidth(), window.GetHeight());
 
-        int display_w = window.GetFrameBufferWidth();
-        int display_h = window.GetFrameBufferHeight();
-        int w = window.GetWidth();
-        int h = window.GetHeight();
-        if (w > 0 && h > 0)
-        io.DisplayFramebufferScale = ImVec2((float)display_w / (float)w, (float)display_h / (float)h);
-
         ImGui_ImplOpenGL2_NewFrame();
         ImGui::NewFrame();
 
