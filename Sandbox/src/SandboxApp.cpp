@@ -6,6 +6,8 @@ public:
     Sandbox()
     {
         TEXEL_INFO("Creating Sandbox");
+        auto imGuiLayer = new Texel::ImGuiLayer();
+        PushOverlay(imGuiLayer);
     }
     ~Sandbox()
     {

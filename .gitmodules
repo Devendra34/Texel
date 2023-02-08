@@ -4,3 +4,6 @@
 [submodule "Texel/third-party/glfw"]
 	path = Texel/third-party/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "Texel/third-party/imgui"]
+	path = Texel/third-party/imgui
+	url = https://github.com/ocornut/imgui.git

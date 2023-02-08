@@ -4,14 +4,18 @@
 #include <glad/gl.h>
 #include "Texel/Events/ApplicationEvent.h"
 #include "Texel/Log.h"
- 
+
 namespace Texel
 {
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
+    Application* Application::m_Instance = nullptr;
+
     Application::Application()
     {
+        TEXEL_CORE_ASSERT(!m_Instance, "Application already exists!");
+        m_Instance = this;
         m_Window = std::unique_ptr<Window>(Window::Create());
         m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
     }
@@ -21,11 +25,13 @@ namespace Texel
     void Application::PushLayer(Layer *layer)
     {
         m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer *layer)
     {
         m_LayerStack.PushOverlay(layer);
+        layer->OnAttach();
     } 
 
     void Application::OnEvent(Event &e)
