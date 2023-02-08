@@ -6,6 +6,7 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "LayerStack.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace Texel
 {
@@ -32,6 +33,7 @@ namespace Texel
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
         LayerStack m_LayerStack;
+        ImGuiLayer* m_ImGuiLayer;
 
     private:
         static Application *m_Instance;

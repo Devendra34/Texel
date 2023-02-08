@@ -8,8 +8,6 @@
 namespace Texel
 {
 
-#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
-
     Application* Application::m_Instance = nullptr;
 
     Application::Application()
@@ -17,7 +15,10 @@ namespace Texel
         TEXEL_CORE_ASSERT(!m_Instance, "Application already exists!");
         m_Instance = this;
         m_Window = std::unique_ptr<Window>(Window::Create());
-        m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+        m_Window->SetEventCallback(TEXEL_BIND_EVENT_FN(Application::OnEvent));
+
+        m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
     }
 
     Application::~Application() {}
@@ -37,7 +38,7 @@ namespace Texel
     void Application::OnEvent(Event &e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowCloseEvent>(TEXEL_BIND_EVENT_FN(Application::OnWindowClose));
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
         {
@@ -57,6 +58,12 @@ namespace Texel
             for (auto layer : m_LayerStack) {
                 layer->OnUpdate();
             }
+
+            m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+			    layer->OnImGuiRender();
+			m_ImGuiLayer->End();
+            
             m_Window->OnUpdate();
         }
     }

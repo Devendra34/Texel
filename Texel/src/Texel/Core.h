@@ -14,4 +14,6 @@
 
 #define BIT(x) (1 << x)
 
+#define TEXEL_BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+
 #endif // Core_h

@@ -9,12 +9,12 @@ namespace Texel
 {
     static bool s_GLFWInitialized = false;
 
-    static void GLFWErrorCallback(int error, const char* description)
-	{
-		TEXEL_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
-	}
+    static void GLFWErrorCallback(int error, const char *description)
+    {
+        TEXEL_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+    }
 
-    Window *Window::Create(const WindowProps &props) 
+    Window *Window::Create(const WindowProps &props)
     {
         return new WindowsWindow(props);
     }
@@ -45,6 +45,10 @@ namespace Texel
 
 			glfwSetErrorCallback(GLFWErrorCallback);
             s_GLFWInitialized = true;
+
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+            glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         }
 
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
@@ -53,14 +57,15 @@ namespace Texel
         int version = gladLoadGL(glfwGetProcAddress);
         TEXEL_CORE_ASSERT(version, "Failed to initialize OpenGL context\n");
         TEXEL_CORE_INFO("Loaded OpenGL {0}.{1}", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
-            
-        glfwSetWindowUserPointer (m_Window, &m_Data);
+
+        glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
 
         RegisterEvents();
     }
 
-    void WindowsWindow::RegisterEvents() {
+    void WindowsWindow::RegisterEvents()
+    {
 
         // Set GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)

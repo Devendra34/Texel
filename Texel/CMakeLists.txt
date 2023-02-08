@@ -23,11 +23,7 @@ include_directories(${THIRD_PARTY_SRCS}/imgui/)
 include_directories(${THIRD_PARTY_SRCS}/imgui/backends)
 
 
-file(GLOB FILES_IMGUI_SOURCES "${THIRD_PARTY_SRCS}/imgui/*.h"
-        "${THIRD_PARTY_SRCS}/imgui/*.cpp"
-        "${THIRD_PARTY_SRCS}/imgui/backends/imgui_impl_glfw.cpp"
-        "${THIRD_PARTY_SRCS}/imgui/backends/imgui_impl_opengl2.cpp"
-        "${THIRD_PARTY_SRCS}/imgui/backends/imgui_impl_opengl3.cpp")
+file(GLOB FILES_IMGUI_SOURCES "${THIRD_PARTY_SRCS}/imgui/*.h" "${THIRD_PARTY_SRCS}/imgui/*.cpp")
 
 set(CMAKE_POSITION_INDEPENDENT_CODE 1)
 

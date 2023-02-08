@@ -15,6 +15,7 @@ set(SANDBOX_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/Sandbox/src")
 
 include_directories(SANDBOX_SRCS)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Texel/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Texel/third-party)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Texel)
 

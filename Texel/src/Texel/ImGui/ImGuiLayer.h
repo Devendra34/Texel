@@ -2,7 +2,10 @@
 #define IMGUI_LAYER_H
 
 #include "Texel/Layer.h"
-#include "GLFW/glfw3.h"
+
+#include "Texel/Events/ApplicationEvent.h"
+#include "Texel/Events/KeyEvent.h"
+#include "Texel/Events/MouseEvent.h"
 
 namespace Texel
 {
@@ -14,8 +17,10 @@ namespace Texel
 
         void OnAttach() override;
         void OnDetach() override;
-        void OnUpdate() override;
-        void OnEvent(Event &event) override;
+        void OnImGuiRender() override;
+
+        void Begin();
+        void End();
 
     private:
         float m_Time = 0.0f;
