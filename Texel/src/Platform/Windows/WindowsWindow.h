@@ -2,6 +2,7 @@
 #define WINDOWS_WINDOW_H
 
 #include "Texel/Window.h"
+#include "glad/gl.h"
 #include "GLFW/glfw3.h"
 
 namespace Texel

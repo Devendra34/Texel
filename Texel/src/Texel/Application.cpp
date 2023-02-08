@@ -1,10 +1,10 @@
 #include "texel_pch.h"
 #include "Application.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/gl.h>
 #include "Texel/Events/ApplicationEvent.h"
 #include "Texel/Log.h"
-
+ 
 namespace Texel
 {
 
@@ -45,6 +45,9 @@ namespace Texel
     {
         while (m_Running)
         {
+            glClearColor(0.2f, 0.3f, 0.8f, 0.1f);
+            glClear(GL_COLOR_BUFFER_BIT);
+            
             for (auto layer : m_LayerStack) {
                 layer->OnUpdate();
             }

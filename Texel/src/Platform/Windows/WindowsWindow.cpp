@@ -49,6 +49,11 @@ namespace Texel
 
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(m_Window);
+
+        int version = gladLoadGL(glfwGetProcAddress);
+        TEXEL_CORE_ASSERT(version, "Failed to initialize OpenGL context\n");
+        TEXEL_CORE_INFO("Loaded OpenGL {0}.{1}", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+            
         glfwSetWindowUserPointer (m_Window, &m_Data);
         SetVSync(true);
 
